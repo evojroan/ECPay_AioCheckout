@@ -8,11 +8,17 @@ const HashIV = "EkRm7iFT261dpevs"; //3002607
 let isStage = true; // 測試環境： true；正式環境：false
 
 //二、輸入參數
-const TotalAmount = "100";
-const TradeDesc = "測試敘述";
-const ItemName = "測試名稱";
-const ReturnURL = "https://www.ecpay.com.tw";
-const ChoosePayment = "ALL";
+let parameters={
+
+  'TotalAmount':1000,
+  'TradeDesc':"Test Order",
+  'ItemName':'Test Product',
+  'ReturnURL' :"https://yourwebsite.com/return",
+  'ChoosePayment' : "ATM",
+  'ChooseSubPayment':"PANHSIN"
+  
+}
+
 
 ////////////////////////以下參數不用改////////////////////////
 const stage = isStage ? "-stage" : "";
@@ -49,16 +55,12 @@ const MerchantTradeDate = new Date().toLocaleDateString("zh-TW", {
 
 //三、計算 CheckMacValue 之前
 let ParamsBeforeCMV = {
+  ...parameters,
   "MerchantID": MerchantID,
   "MerchantTradeNo": MerchantTradeNo,
   "MerchantTradeDate": MerchantTradeDate.toString(),
   "PaymentType": "aio",
   "EncryptType": 1,
-  "TotalAmount": TotalAmount,
-  "TradeDesc": TradeDesc,
-  "ItemName": ItemName,
-  "ReturnURL": ReturnURL,
-  "ChoosePayment": ChoosePayment
 };
 
 //四、計算 CheckMacValue
