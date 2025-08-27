@@ -98,7 +98,7 @@ const CheckMacValue = CheckMacValueGen(getParameters(), "sha256", "hex");
 const AllParams = { ...getParameters(), CheckMacValue };
 const inputs = Object.entries(AllParams)
   .map(function (param) {
-    return `<input name=${param[0]} value="${param[1].toString()}"><br/>`;
+    return `<input type="hidden" name=${param[0]} value="${param[1].toString()}">`;
   })
   .join("");
 
@@ -110,7 +110,7 @@ const htmlContent = `
     <title>測試</title>
 </head>
 <body>
-    <form id="paymentForm" target="_blank" method="post" action="${APIURL}">
+    <form id="paymentForm" method="post" action="${APIURL}">
 ${inputs}
 
     </form>
